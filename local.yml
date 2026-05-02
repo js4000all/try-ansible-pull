@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: 1. echo test file を作る
+      copy:
+        content: |
+          ansible-pull works!!
+          executed at: {{ ansible_date_time.iso8601 }}
+        dest: /tmp/ansible_pull_test.txt
+
+    - name: 2. ファイル内容を echo で表示
+      command: cat /tmp/ansible_pull_test.txt
+      register: result
+      changed_when: false
+
+    - name: 3. 結果を debug 表示
+      debug:
+        msg: "{{ result.stdout }}"
+        

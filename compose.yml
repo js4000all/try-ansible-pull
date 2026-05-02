@@ -1,0 +1,8 @@
+services:
+  vm:
+    build:
+      context: .
+    volumes:
+      - ./work:/work
+    command: sleep infinity
+    init: true
